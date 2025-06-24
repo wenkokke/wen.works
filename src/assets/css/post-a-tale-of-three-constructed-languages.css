@@ -1,0 +1,44 @@
+@import "./font-tengwar.css";
+@import "./font-toki-tengwar.css";
+@import "./font-litterae-ignotae";
+
+/* Miscellaneous Classes */
+.lingua-ignota-highlight {
+  text-decoration: underline;
+}
+.solresol-red, .solresol-orange, .solresol-yellow, .solresol-green, .solresol-cyan, .solresol-blue, .solresol-magenta {
+  font-weight: bold;
+}
+.solresol-red {
+  color: red;
+}
+.solresol-orange {
+  color: orange;
+}
+.solresol-yellow {
+  color: yellow;
+}
+.solresol-green {
+  color: orange;
+}
+.solresol-cyan {
+  color: #00CCCC;
+}
+.solresol-blue {
+  color: #3399FF;
+}
+.solresol-magenta {
+  color: magenta;
+}
+.solresol-red:hover, .solresol-orange:hover, .solresol-yellow:hover, .solresol-green:hover, .solresol-cyan:hover, .solresol-blue:hover, .solresol-magenta:hover {
+  color: black;
+}
+figure.x-large > blockquote > p {
+    font-size: 3.2rem;
+}
+figure.xx-large > blockquote > p {
+    font-size: 2.2rem;
+}
+figure.xxx-large > blockquote > p {
+    font-size: 1.8rem;
+}

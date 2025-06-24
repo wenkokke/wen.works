@@ -1,0 +1,13 @@
+/* Font for LitteraeIgnotae */
+@font-face {
+    font-family: "LitteraeIgnotae";
+    src: url("/fonts/LitteraeIgnotae.woff2") format("woff2"),
+         url("/fonts/LitteraeIgnotae.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* Class for LitteraeIgnotae */
+.font-litterae-ignotae {
+  font-family: LitteraeIgnotae;
+}

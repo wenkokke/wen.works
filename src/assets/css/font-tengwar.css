@@ -1,0 +1,13 @@
+/* Font for Tengwar */
+@font-face {
+    font-family: "Tengwar";
+    src: url("/fonts/Tengwar.woff2") format("woff2"),
+         url("/fonts/Tengwar.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* Class for Tengwar */
+.font-tengwar {
+  font-family: Tengwar;
+}

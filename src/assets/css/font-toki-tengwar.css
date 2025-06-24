@@ -1,0 +1,13 @@
+/* Font for TokiTengwar */
+@font-face {
+    font-family: "TokiTengwar";
+    src: url("/fonts/TokiTengwar.woff2") format("woff2"),
+         url("/fonts/TokiTengwar.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* Class for TokiTengwar */
+.font-toki-tengwar {
+  font-family: TokiTengwar;
+}
