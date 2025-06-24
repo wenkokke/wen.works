@@ -1,0 +1,3 @@
+name:    site
+include: src/posts
+depend:  standard-library
