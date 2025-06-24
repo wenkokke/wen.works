@@ -1,0 +1,10 @@
+Unless stated otherwise:
+
+- the code in this directory is licensed AGPL-3.0-only.
+- the text in this directory is licensed CC BY-SA-NC 4.0.
+
+The following files are in the public domain:
+
+- src/Eff1.hs
+- src/FTCQueue1.hs
+- src/OpenUnion41.hs
