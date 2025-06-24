@@ -3,17 +3,25 @@ import "../assets/css/blog-post.css";
 import { Time } from "@astro-github-elements/time";
 import Layout from "./Layout.astro";
 const { frontmatter } = Astro.props;
+// Conditional formatting.
+if (frontmatter.id === "paper-girls-substitution-ciphers-and-frequency-analysis") {
+  await import("../assets/css/post-paper-girls-substitution-ciphers-and-frequency-analysis.css");
+}
 ---
 
 <Layout frontmatter={frontmatter}>
-  <h1>{frontmatter.title}</h1>
+  <h1>{frontmatter.data.title}</h1>
   <p class="subtitle blog-post-meta">
     Written by
     <span class="blog-post-author">
-      {frontmatter.author}
+      {frontmatter.data.author}
     </span>
     on
-    <Time class="blog-post-pubDate" format="datetime" datetime={frontmatter.pubDate} />
+    <Time
+      class="blog-post-pubDate"
+      format="datetime"
+      datetime={frontmatter.data.pubDate}
+    />
   </p>
   <slot />
 </Layout>

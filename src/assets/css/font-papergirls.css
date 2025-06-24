@@ -1,0 +1,13 @@
+/* Font for Papergirls */
+@font-face {
+    font-family: "Papergirls";
+    src: url("/fonts/Papergirls.woff2") format("woff2"),
+         url("/fonts/Papergirls.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+/* Class for Papergirls */
+.font-papergirls {
+  font-family: Papergirls;
+}
