@@ -1,3 +1,14 @@
+/* Font for page banner */
+@font-face {
+    font-family: "Worktalk";
+    src: url("/fonts/Worktalk.woff2") format("woff2"),
+         url("/fonts/Worktalk.ttf") format("truetype"),
+         url("/fonts/Worktalk.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Style for page banner */
 article > header {
   display: flex;
@@ -8,10 +19,14 @@ article > header > p {
   width: 55%;
 }
 article > header > p.banner-title {
-  font-style: italic;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-size: 1.8rem;
   display: block;
   line-height: 1;
+}
+article > header > p.banner-title > a {
+  font-family: "Worktalk";
+  text-decoration: none;
+  background: unset;
+  font-size: 2.4rem;
 }
