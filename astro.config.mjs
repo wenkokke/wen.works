@@ -13,6 +13,7 @@ import remarkBehead from "remark-behead";
 import remarkBracketedSpans2 from "remark-bracketed-spans-2";
 import remarkCite from "./src/plugins/remark-cite.ts";
 import remarkCustomHeaderId from "remark-custom-header-id";
+import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-list';
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import remarkSmartyPants from "remark-smartypants";
@@ -63,6 +64,7 @@ export default defineConfig({
       remarkBracketedSpans2,
       remarkCite,
       remarkCustomHeaderId,
+      remarkDefinitionList,
       remarkDirective,
       remarkMath,
       // @ts-ignore
@@ -74,6 +76,7 @@ export default defineConfig({
         bracketedSpan: bracketedSpanToHast,
         ...remarkRehypeCite({ bibliography }),
         ...remarkRehypeTufte(),
+        ...defListHastHandlers,
       },
     },
     rehypePlugins: [
