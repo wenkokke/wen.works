@@ -1,0 +1,17 @@
+---
+import { Time } from "@astro-github-elements/time";
+import { slug, teaser } from "../site";
+const { frontmatter } = Astro.props;
+---
+
+<li class="blog-post-item">
+  <details>
+    <summary>
+      <span class="blog-post-summary">
+        <a href={slug(frontmatter)}>{frontmatter.data.title}</a>
+        <Time class="blog-post-pubDate" format="datetime" datetime={frontmatter.data.pubDate} />
+      </span>
+    </summary>
+    <Fragment set:html={teaser(frontmatter)} />
+  </details>
+</li>

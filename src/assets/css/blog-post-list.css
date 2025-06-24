@@ -1,0 +1,17 @@
+ol.blog-post-list > li.blog-post-item {
+    list-style-type: none;
+}
+ol.blog-post-list > li.blog-post-item > details > summary {
+    list-style-position: outside;
+}
+ol.blog-post-list > li.blog-post-item > details > summary > span.blog-post-summary {
+    display: flex;
+    flex-direction: column;
+}
+ol.blog-post-list > li.blog-post-item > details > summary > span.blog-post-summary > a {
+    background: unset !important;
+}
+ol.blog-post-list > li.blog-post-item > details > summary > span.blog-post-summary > .blog-post-pubDate {
+    opacity: 0.66;
+    font-style: italic;
+}

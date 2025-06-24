@@ -1,0 +1,21 @@
+---
+import "../assets/css/blog-post-list.css";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import BlogPostItem from "../components/BlogPostItem.astro";
+const posts = await getCollection("posts");
+posts.sort(
+  (post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf()
+);
+---
+
+<Layout>
+  <nav aria-labelledby="blog-posts">
+    <section>
+      <h2 id="blog-posts">Blog Posts</h2>
+      <ol class="blog-post-list">
+        {posts.map((post) => <BlogPostItem frontmatter={post} />)}
+      </ol>
+    </section>
+  </nav>
+</Layout>
