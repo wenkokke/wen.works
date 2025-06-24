@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Agda interface files
 _build/
+
+# Haskell build files
+dist-newstyle/
