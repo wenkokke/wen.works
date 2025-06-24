@@ -15,6 +15,7 @@ import remarkCite from "./src/plugins/remark-cite.ts";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-list';
 import remarkDirective from "remark-directive";
+import remarkDirectiveFallback from "./src/plugins/remark-directive-fallback";
 import remarkMath from "remark-math";
 import remarkSmartyPants from "remark-smartypants";
 import remarkSuperSub from "remark-supersub";
@@ -75,6 +76,7 @@ export default defineConfig({
       // @ts-ignore
       remarkSuperSub,
       remarkTeaser,
+      remarkDirectiveFallback,
     ],
     remarkRehype: {
       handlers: {
