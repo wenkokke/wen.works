@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from "astro:content";
+import BlogPost from "../../../../layouts/BlogPost.astro";
+import { yyyy, mm, dd } from "../../../../site";
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection("posts");
+  return posts.map((post) => {
+    return {
+      params: {
+        yyyy: yyyy(post),
+        mm: mm(post),
+        dd: dd(post),
+        id: post.id
+      },
+      props: { post },
+    };
+  });
+};
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost frontmatter={post.data}>
+  <Content />
+</BlogPost>

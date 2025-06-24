@@ -1,0 +1,21 @@
+import { glob } from "astro/loaders";
+import { z, defineCollection } from "astro:content";
+
+const oldest = new Date("2016-01-01");
+const newest = new Date();
+
+const posts = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/posts",
+    generateId: ({ entry }) => entry.toLowerCase().replace(/(\.[a-z]+)+$/, ""),
+  }),
+  schema: z.object({
+    title: z.string(),
+    author: z.string(),
+    pubDate: z.date().min(oldest).max(newest),
+    tags: z.optional(z.array(z.string())),
+  }),
+});
+
+export const collections = { posts };

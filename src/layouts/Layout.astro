@@ -11,7 +11,7 @@ const base = import.meta.env.BASE_URL;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{frontmatter.title}</title>
+    <title>{frontmatter?.title ?? pageTitle}</title>
     <meta name="robots" content="nofollow,noarchive,nosnippet,noimageindex" />
     <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" />
   </head>
@@ -22,12 +22,6 @@ const base = import.meta.env.BASE_URL;
           <a href={base}>{pageTitle}</a>
         </p>
       </header>
-      <h1>{frontmatter.title}</h1>
-      {
-        frontmatter?.subtitle && (
-          <span class="subtitle">{frontmatter?.subtitle}</span>
-        )
-      }
       <slot />
     </article>
   </body>
