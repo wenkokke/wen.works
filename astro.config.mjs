@@ -32,7 +32,7 @@ const ROOT = import.meta.dirname;
 const Agda = {
   agdaStdlibBaseUrl: "https://agda.github.io/agda-stdlib/v2.2/",
   htmlDir: ".astro/cache/remark-agda/html",
-  args: ["--library-file=tutorial-template.agda-lib-index"],
+  args: ["--library-file=site.agda-lib-index"],
   options: {
     cwd: ROOT,
     env: { ROOT },
@@ -53,7 +53,7 @@ const bibliography = await loadBibTeX("./src/assets/bibliography.bib");
 // https://astro.build/config
 export default defineConfig({
   site: "https://wen.works",
-  base: import.meta.env.DEV ? "" : "/tutorial-template",
+  base: "",
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [
