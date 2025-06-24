@@ -17,6 +17,7 @@ import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-lis
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import remarkSmartyPants from "remark-smartypants";
+import remarkSuperSub from "remark-supersub";
 import rehypeMathJax from "rehype-mathjax";
 import rehypeSlug from "rehype-slug";
 import { bracketedSpanToHast } from "mdast-util-bracketed-spans";
@@ -70,6 +71,8 @@ export default defineConfig({
       // @ts-ignore
       [remarkSmartyPants, { dashes: "oldschool" }],
       remarkTufte,
+      // @ts-ignore
+      remarkSuperSub,
     ],
     remarkRehype: {
       handlers: {
