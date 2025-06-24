@@ -1,0 +1,4 @@
+packages:
+    code/side-effects-in-english
+
+tests: True
