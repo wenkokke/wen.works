@@ -10,7 +10,8 @@
     "prettier": "npx prettier -w ."
   },
   "dependencies": {
-    "tufte-css": "^1.8.0"
+    "tufte-css": "^1.8.0",
+    "xml-formatter": "^3.6.6"
   },
   "devDependencies": {
     "@astro-github-elements/time": "^0.1.4",
@@ -26,6 +27,7 @@
     "hast-util-from-html": "^2.0.3",
     "hast-util-select": "^6.0.4",
     "hast-util-to-html": "^9.0.5",
+    "hast-util-to-text": "^4.0.2",
     "hastscript": "^9.0.1",
     "mdast-util-bracketed-spans": "^1.0.1",
     "mdast-util-phrasing": "^4.1.0",
@@ -42,6 +44,7 @@
     "remark-math": "^6.0.0",
     "remark-smartypants": "^3.0.2",
     "remark-supersub": "^1.0.0",
+    "rfc822-date": "^0.0.3",
     "sharp": "^0.34.2",
     "unist-util-visit": "^5.0.0"
   },
