@@ -1,0 +1,28 @@
+---
+import { byPubDate } from "../site";
+import "../assets/css/blog-post-list.css";
+import "../assets/css/font-papergirls.css";
+import "../assets/css/font-tengwar.css";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import BlogPostItem from "../components/BlogPostItem.astro";
+import HeadingAnchor from "../components/HeadingAnchor.astro";
+const posts = await getCollection("posts");
+---
+
+<Layout>
+  <nav aria-labelledby="blog-posts">
+    <section>
+      <h1 id="blog">
+        <HeadingAnchor id="blog">Blog Posts</HeadingAnchor>
+      </h1>
+      <dl class="blog-post-list">
+        {
+          posts
+            .toSorted(byPubDate)
+            .map((post) => <BlogPostItem frontmatter={post} />)
+        }
+      </dl>
+    </section>
+  </nav>
+</Layout>
