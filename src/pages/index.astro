@@ -5,25 +5,53 @@ import "../assets/css/font-tengwar.css";
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import BlogPostItem from "../components/BlogPostItem.astro";
+import BibEntry from "../components/BibEntry.astro";
+import { byPubDate as postByPubDate } from "../site";
+import bibEntries, {
+  byPubDate as bibEntryByPubDate,
+  byRelevance as bibEntryByRelevance,
+} from "../assets/publications/publications";
+const base = import.meta.env.BASE_URL;
 const posts = await getCollection("posts");
-posts.sort(
-  (post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf()
-);
 ---
 
 <Layout>
-  <nav aria-labelledby="blog-posts">
+  <nav aria-labelledby="blog">
     <section>
-      <h2 id="blog-posts">Blog Posts</h2>
-      <ol class="blog-post-list">
-        {posts.map((post) => <BlogPostItem frontmatter={post} />)}
-      </ol>
+      <h1 id="blog"><a href={`${base}blog/`}>Blog Posts</a></h1>
+      <dl class="blog-post-list">
+        {
+          posts
+            .toSorted(postByPubDate)
+            .slice(0, 5)
+            .map((post) => <BlogPostItem frontmatter={post} />)
+        }
+      </dl>
+      <p>
+        See the <a href={`${base}blog/`}>full list of blog posts.</a>
+      </p>
+    </section>
+  </nav>
+  <nav aria-labelledby="pubs">
+    <section>
+      <h1 id="pubs"><a href={`${base}pubs/`}>Publications</a></h1>
+      <dl class="pubs-list">
+        {
+          bibEntries
+            .toSorted(bibEntryByRelevance)
+            .slice(0, 5)
+            .toSorted(bibEntryByPubDate)
+            .map((bibEntry) => <BibEntry {...bibEntry} />)
+        }
+      </dl>
+      <p>
+        See the <a href={`${base}pubs/`}>full list of publications.</a>
+      </p>
     </section>
   </nav>
 </Layout>
 
-
 <!-- Add profile -->
 <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile"/>
+  <link href="http://gmpg.org/xfn/11" rel="profile" />
 </head>
