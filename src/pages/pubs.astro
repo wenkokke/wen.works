@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BibEntry from "../components/BibEntry.astro";
+import bibEntries from "../assets/publications/publications";
+import HeadingAnchor from "../components/HeadingAnchor.astro";
+
+// Function to compute a link anchor from a section title
+function linkAnchor(title: string): string {
+  return title.toLowerCase().replaceAll(/\s+/g,'-');
+}
+
+// List bibliography sections
+const bibSections = [
+  { title: "Drafts", types: ["manuscript"] },
+  { title: "Books", types: ["book"] },
+  { title: "Journal Articles", types: ["article-journal"] },
+  {
+    title: "Conference and Workshop Papers",
+    types: ["chapter", "paper-conference"],
+  },
+  { title: "Theses", types: ["thesis"] },
+  { title: "Talks", types: ["performance", "speech"] },
+  { title: "Public Houses", types: ["document"] },
+];
+
+const bibEntriesBySection = bibSections.map(({ title, types }) => ({
+  title,
+  types,
+  bibEntries: bibEntries.filter(({ type }) => types.includes(type)),
+}));
+---
+
+<Layout>
+  <h1 id="pubs">
+    <HeadingAnchor id="pubs">Publications</HeadingAnchor>
+  </h1>
+  {
+    bibEntriesBySection.map(
+      ({ title, bibEntries }) =>
+        bibEntries.length > 0 && (
+          <section>
+            <h2 id={linkAnchor(title)}>
+              <HeadingAnchor id={linkAnchor(title)}>{title}</HeadingAnchor>
+            </h2>
+            <dl class="publications-list">
+              {bibEntries.map((bibEntry) => (
+                <BibEntry {...bibEntry} />
+              ))}
+            </dl>
+          </section>
+        )
+    )
+  }
+</Layout>

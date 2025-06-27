@@ -1,0 +1,116 @@
+---
+import {
+  paperTypes,
+  thesisTypes,
+  bookTypes,
+  talkTypes,
+} from "../assets/publications/publications";
+import { base } from "../site";
+const { citation, extensionOf, host, html, id, type, url } = Astro.props;
+---
+
+<dt class="bib-key">
+  <a id={id} href={`#${id}`}>
+    {citation}
+  </a>
+</dt>
+<dd class="bib-entry">
+  <Fragment set:html={html} />
+  <!-- Extension note -->
+  {
+    extensionOf && (
+      <div class="csl-right-inline">
+        Extended version of{" "}
+        <a href={`${base}pubs/#${extensionOf.id}`}>{extensionOf.citation}</a>.
+      </div>
+    )
+  }
+  <!-- Resource URL -->
+  {
+    url &&
+      (() => {
+        if (url.match(/youtu\.be/)) {
+          return (
+            <>
+              Video at: <a href={url}>{host}</a>
+            </>
+          );
+        }
+        if (bookTypes.includes(type)) {
+          if (url.match(/\.pdf$/)) {
+            return (
+              <>
+                Book as: <a href={url}>PDF</a>
+              </>
+            );
+          }
+          return (
+            <>
+              Book at: <a href={url}>{host}</a>
+            </>
+          );
+        }
+        if (thesisTypes.includes(type)) {
+          if (url.match(/\.pdf$/)) {
+            return (
+              <>
+                Thesis as: <a href={url}>PDF</a>
+              </>
+            );
+          }
+          return (
+            <>
+              Thesis at: <a href={url}>{host}</a>
+            </>
+          );
+        }
+        if (paperTypes.includes(type)) {
+          if (url.match(/\.pdf$/)) {
+            return (
+              <>
+                Paper as: <a href={url}>PDF</a>
+              </>
+            );
+          }
+          return (
+            <>
+              Paper at: <a href={url}>{host}</a>
+            </>
+          );
+        }
+        if (talkTypes.includes(type)) {
+          if (url.match(/\.pdf$/)) {
+            return (
+              <>
+                Slides as: <a href={url}>PDF</a>
+              </>
+            );
+          }
+          if (url.match(/\.pptx$/)) {
+            return (
+              <>
+                Slides as: <a href={url}>PowerPoint</a>
+              </>
+            );
+          }
+          if (host === Astro.site?.host && url.match(/\.html$/)) {
+            return (
+              <>
+                Slides as: <a href={url}>HTML</a>
+              </>
+            );
+          }
+          return (
+            <>
+              Slides at: <a href={url}>{host}</a>
+            </>
+          );
+        }
+        return (
+          <>
+            Website: <a href={url}>{host}</a>
+          </>
+        );
+      })()
+  }
+</dd>

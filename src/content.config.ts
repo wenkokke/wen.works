@@ -1,6 +1,10 @@
 import { glob } from "astro/loaders";
 import { z, defineCollection } from "astro:content";
 
+/******************************************************************************/
+// Blog Posts
+/******************************************************************************/
+
 const oldest = new Date("2016-01-01");
 const newest = new Date();
 
