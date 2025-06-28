@@ -11,11 +11,55 @@ import bibEntries, {
   byPubDate as bibEntryByPubDate,
   byRelevance as bibEntryByRelevance,
 } from "../assets/publications/publications";
+import MarginNote from "../components/MarginNote.astro";
 const base = import.meta.env.BASE_URL;
 const posts = await getCollection("posts");
 ---
 
 <Layout>
+  <section>
+    <h1 id="about">About Me</h1>
+    <p>
+      Heya, I'm <span title="/wɛn/">Wen</span>!
+    </p>
+    <p>
+      I'm a researcher with an interest in
+      <MarginNote id="programming-languages" label="programming languages">
+        My programming languages research is focused on type systems.
+        Specifically, on dependent types, linear types, and their other substructural friends.
+        I wrote my <a href="#Kokke24:phdpasta">doctoral thesis</a> on session types,
+        and I co-created the book <a href="#WadlerKS20:plfa">Programming Language Foundations in Agda</a> with my Ph.D. supervisor Philip Wadler and, later, Jeremy G. Siek.
+      </MarginNote>,
+      <MarginNote id="natural-languages" label="natural languages">
+        My natural language research is focused on Lambek calculus and Montague semantics.
+      </MarginNote>, and
+      <MarginNote id="machine-learning" label="machine learning">
+        My machine learning research is focused on the lightweight verification of neural networks and on structural machine learning.
+      </MarginNote>.
+      <wbr />
+      I'm also a programmer with decades of experience working in Haskell and Agda.
+    </p>
+    <p>
+      This is my academic website.
+      I publish <a href=`${base}blog/`>blog posts</a> on whatever topic I'm interested and with absolutely no schedule.
+      If you're interested, there's an <a href=`${base}rss.xml`>RSS feed</a>.
+    </p>
+    <p>
+      I also maintain
+      a list of my <a href=`${base}pubs/`>publications</a>, with links to freely available copies,
+      as well as
+      a list of all the <a href=`${base}pubs/#talks`>talks</a> I've ever given,
+      with links to recordings, where those exist, or to my slides otherwise.
+    </p>
+    <p>
+      You can reach me at
+      <a href="znvygb:zr@jra.jbexf" data-email-scramble>zr@jra.jbexf</a>.
+    </p>
+    <p>
+      You can follow me on Mastodon at
+      <a href="https://types.pl/@wen">@wen@types.pl</a>
+    </p>
+  </section>
   <nav aria-labelledby="blog">
     <section>
       <h1 id="blog"><a href={`${base}blog/`}>Blog Posts</a></h1>
@@ -55,3 +99,17 @@ const posts = await getCollection("posts");
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile" />
 </head>
+
+<!-- Add email-scramble -->
+<script>
+  // @ts-ignore
+  import emailScramble from "email-scramble";
+  document
+    .querySelectorAll("[data-email-scramble]")
+    .forEach((link: Element) => {
+      if (link instanceof HTMLAnchorElement) {
+        link.href = emailScramble.decode(link.href);
+        link.textContent = emailScramble.decode(link.textContent);
+      }
+    });
+</script>

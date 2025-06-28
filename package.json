@@ -10,6 +10,7 @@
     "prettier": "npx prettier -w ."
   },
   "dependencies": {
+    "email-scramble": "^3.0.0",
     "tufte-css": "^1.8.0",
     "xml-formatter": "^3.6.6"
   },
