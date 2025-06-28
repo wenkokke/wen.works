@@ -100,7 +100,7 @@ const bibEntries = formatBibliography(entries, null, {
       ? undefined
       : { id: extensionId, citation: extensionCitation };
   const pubDate = entry.custom.pubDate as Date | undefined;
-  return { citation, extensionOf, host, html, id, pubDate, type, url };
+  return { citation, entry, extensionOf, host, html, id, pubDate, type, url };
 });
 
 export type BibEntry = (typeof bibEntries)[0];
@@ -132,13 +132,28 @@ export const bookTypes = ["book"];
 
 export const talkTypes = ["performance", "speech"];
 
+export const isBook = (bibEntry: BibEntry): boolean =>
+  bookTypes.includes(bibEntry.type);
+
+export const isDoctoralThesis = (bibEntry: BibEntry): boolean =>
+  thesisTypes.includes(bibEntry.type) && bibEntry.entry.genre === "Doctoral thesis";
+
+export const isTalk = (bibEntry: BibEntry): boolean =>
+  talkTypes.includes(bibEntry.type);
 
 export function byRelevance(bibEntry1: BibEntry, bibEntry2: BibEntry): number {
   // Books are MORE relevant
-  if (bookTypes.includes(bibEntry1.type) && !bookTypes.includes(bibEntry2.type)) {
+  if (isBook(bibEntry1) && !isBook(bibEntry2)) {
     return -1;
   }
-  if (!bookTypes.includes(bibEntry1.type) && bookTypes.includes(bibEntry2.type)) {
+  if (!isBook(bibEntry1) && isBook(bibEntry2)) {
+    return 1;
+  }
+  // Doctoral Theses are MORE relevant
+  if (isDoctoralThesis(bibEntry1) && !isDoctoralThesis(bibEntry2)) {
+    return -1;
+  }
+  if (!isDoctoralThesis(bibEntry1) && isDoctoralThesis(bibEntry2)) {
     return 1;
   }
   // Talks are LESS relevant
