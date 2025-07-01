@@ -18,6 +18,7 @@ import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-lis
 import remarkDirective from "remark-directive";
 import remarkDirectiveFallback from "./src/plugins/remark-directive-fallback";
 import remarkMath from "remark-math";
+import remarkMathpar from "./src/plugins/remark-mathpar";
 import remarkSmartyPants from "remark-smartypants";
 import remarkSuperSub from "remark-supersub";
 import rehypeMathJax from "rehype-mathjax";
@@ -72,6 +73,7 @@ export default defineConfig({
       remarkDefinitionList,
       remarkDirective,
       remarkMath,
+      remarkMathpar,
       // @ts-ignore
       [remarkSmartyPants, { dashes: "oldschool" }],
       remarkTufte,
