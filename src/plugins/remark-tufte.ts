@@ -16,14 +16,12 @@ import type { BracketedSpan } from "mdast-util-bracketed-spans";
 import type { VFile } from "vfile";
 import assert from "assert";
 import { visit, SKIP } from "unist-util-visit";
-import { CONTINUE, visitParents } from "unist-util-visit-parents";
+import { CONTINUE } from "unist-util-visit-parents";
 import { is } from "unist-util-is";
 import { phrasing } from "mdast-util-phrasing";
 import { h } from "hastscript";
 import path from "path";
 import { pathToFileURL } from "url";
-import equal from "fast-deep-equal";
-import type { Position } from "unist";
 
 /******************************************************************************/
 /* remarkTufte                                                                */
@@ -53,208 +51,12 @@ export default function remarkTufte(
   options?: TufteOptions,
 ): Transformer<Root, Root> {
   return (tree: Root, file: VFile) => {
-    linter(tree, file);
     sectionize(tree, options);
     handleEpigraph(tree);
     handleFigures(tree, file);
     handleNotes(tree, file);
     handleFullwidth(tree);
   };
-}
-
-/******************************************************************************/
-/* remarkTufte - Linter                                                       */
-/******************************************************************************/
-
-/** Lint the directives in the tree. */
-function linter(tree: Root, file: VFile, options?: TufteOptions): void {
-  /** Assert that two objects are equal or fail. */
-  const ensure = (
-    expect: any,
-    actual: any,
-    message: string,
-    position?: Position,
-  ): void | never => {
-    if (!equal(expect, actual)) {
-      file.fail(
-        `${message}\n  expect: ${JSON.stringify(expect)}\n  actual: ${JSON.stringify(actual)}`,
-        position,
-      );
-    }
-  };
-  // Check heading level.
-  visit(tree, "heading", (heading) => {
-    if (heading.depth > sectionizeHeading(options) + 1) {
-      file.fail(`unsupported heading of depth ${heading.depth}`, {
-        place: heading.position,
-        ruleId: "max-heading-depth",
-        source: "remark-tufte-linter",
-      });
-    }
-  });
-  // Check bracketedSpan nodes:
-  visitParents(tree, "bracketedSpan", (span, ancestors) => {
-    // Get the `className` property.
-    const className = span.properties?.className || [];
-    assert(Array.isArray(className), "expected array `className`");
-    // If the span is a newthought...
-    if (className.includes("newthought")) {
-      // ...ensure it ONLY specifies the newthought class
-      const expect = { className: ["newthought"] };
-      const actual = span.properties;
-      ensure(
-        expect,
-        actual,
-        "unsupported property on newthought span",
-        span.position,
-      );
-      return CONTINUE;
-    }
-    // If the span is a cite...
-    if (className.includes("cite")) {
-      // ...ensure it ONLY specifies the cite class
-      const expect = { className: ["cite"] };
-      const actual = span.properties;
-      ensure(
-        expect,
-        actual,
-        "unsupported property on cite span",
-        span.position,
-      );
-      // ...ensure it is nested under an epigraph directive
-      const epigraph = ancestors.find((ancestor) =>
-        is(ancestor, { type: "containerDirective", name: "epigraph" }),
-      );
-      if (epigraph === undefined) {
-        file.fail(
-          `unsupported cite span outside of epigraph directive`,
-          span.position,
-        );
-      }
-      return CONTINUE;
-    }
-    // If the span is a footer...
-    if (className.includes("footer")) {
-      // ...ensure it ONLY specifies the footer class
-      const expect = { className: ["footer"] };
-      const actual = span.properties;
-      ensure(
-        expect,
-        actual,
-        "unsupported property on footer span",
-        span.position,
-      );
-      // ...ensure it is nested under an epigraph directive
-      const epigraph = ancestors.find((ancestor) =>
-        is(ancestor, { type: "containerDirective", name: "epigraph" }),
-      );
-      if (epigraph === undefined) {
-        file.fail(
-          `unsupported footer span outside of epigraph directive`,
-          span.position,
-        );
-      }
-      return CONTINUE;
-    }
-    // If the span is a margin span...
-    if (className.includes("margin")) {
-      // ...ensure it ONLY specifies permitted properties
-      const permit = ["className", "id", "label"];
-      const actual = Object.keys(span.properties);
-      ensure(
-        ["margin"],
-        className,
-        "unsupported class on margin figure",
-        span.position,
-      );
-      const extras = actual.filter(
-        (propertyName) => !permit.includes(propertyName),
-      );
-      if (extras.length > 0) {
-        file.fail(
-          `unsupported property on margin span: ${extras.join(", ")}`,
-          span.position,
-        );
-      }
-      // ...ensure it ONLY omits the id if it is a margin figure
-      if (typeof span.properties.id !== "string") {
-        if (!span.children.find((node) => node.type === "image")) {
-          file.fail(`cannot omit id on a margin span`, span.position);
-        }
-      }
-      return CONTINUE;
-    }
-    // Otherwise, reject the span...
-    file.fail(
-      `unsupported span with properties ${JSON.stringify(span.properties)}`,
-      span.position,
-    );
-  });
-  // Check containerDirective, leafDirective, and textDirective nodes.
-  visit(
-    tree,
-    ["containerDirective", "leafDirective", "textDirective"],
-    (node) => {
-      assert(
-        node.type === "containerDirective" ||
-          node.type === "leafDirective" ||
-          node.type === "textDirective",
-        "expected `directive`",
-      );
-      if (is(node, "containerDirective")) {
-        // If the directive is an epigraph directive...
-        if (node.name === "epigraph") {
-          // ...ensure it ONLY specifies fullwidth directive
-          const expect = {};
-          const actual = node.attributes ?? {};
-          ensure(
-            expect,
-            actual,
-            `unsupported property on ${node.name}`,
-            node.position,
-          );
-          return CONTINUE;
-        }
-        // If the node is a fullwidth node...
-        if (node.name === "fullwidth") {
-          // ...ensure it ONLY specifies fullwidth directive
-          const expect = {};
-          const actual = (node as ContainerDirective).attributes ?? {};
-          ensure(
-            expect,
-            actual,
-            `unsupported property on ${node.name}`,
-            node.position,
-          );
-          return CONTINUE;
-        }
-        // If the node is an iframe node...
-        if (node.name === "iframe") {
-          // ...ensure it ONLY specifies permitted properties
-          const permit = [
-            "width",
-            "height",
-            "src",
-            "frameborder",
-            "allowfullscreen",
-          ];
-          const actual = Object.keys(node.attributes ?? {});
-          const extras = actual.filter(
-            (propertyName) => !permit.includes(propertyName),
-          );
-          if (extras.length > 0) {
-            file.fail(
-              `unsupported property on ${node.name}: ${extras.join(", ")}`,
-              node.position,
-            );
-          }
-          return CONTINUE;
-        }
-      }
-      file.fail(`unsupported ${node.name} node`, node.position);
-      return CONTINUE;
-    },
-  );
 }
 
 /******************************************************************************/
