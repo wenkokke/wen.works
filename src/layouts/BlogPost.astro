@@ -7,6 +7,9 @@ const { frontmatter } = Astro.props;
 if (frontmatter.id === "paper-girls-substitution-ciphers-and-frequency-analysis") {
   await import("../assets/css/post-paper-girls-substitution-ciphers-and-frequency-analysis.css");
 }
+if (frontmatter.id === "neural-networks-with-cube-cats") {
+  await import("../assets/css/cube-pets.css");
+}
 ---
 
 <Layout frontmatter={frontmatter}>
