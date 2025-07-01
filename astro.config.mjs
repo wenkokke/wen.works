@@ -12,6 +12,7 @@ import remarkAgda from "remark-agda";
 import remarkBehead from "remark-behead";
 import remarkBracketedSpans2 from "remark-bracketed-spans-2";
 import remarkCite from "./src/plugins/remark-cite.ts";
+import remarkCubePets from "./src/plugins/remark-cube-pets";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import { remarkDefinitionList, defListHastHandlers } from 'remark-definition-list';
 import remarkDirective from "remark-directive";
@@ -67,6 +68,7 @@ export default defineConfig({
       remarkBracketedSpans2,
       remarkCite,
       remarkCustomHeaderId,
+      remarkCubePets,
       remarkDefinitionList,
       remarkDirective,
       remarkMath,

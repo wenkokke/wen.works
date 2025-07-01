@@ -1,0 +1,17 @@
+figure.cube-pets {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+figure.cube-pets > span {
+    width: 30%;
+}
+figure.cube-pets > span.smol {
+    width: 20%;
+}
+figure.cube-pets > span.huge {
+    width: 40%;
+}
+figure.cube-pets > span.flip > img {
+    transform: scaleX(-1);
+}
