@@ -28,6 +28,7 @@ import remarkTufte from "./src/plugins/remark-tufte.ts";
 import remarkRehypeTufte from "./src/plugins/remarkRehype-tufte.ts";
 import rehypeTufte from "./src/plugins/rehype-tufte.ts";
 import rehypeHeadingAnchor from "./src/plugins/rehype-heading-anchor.ts";
+import remarkTeaser from "./src/plugins/remark-teaser";
 
 // Agda options
 const ROOT = import.meta.dirname;
@@ -73,6 +74,7 @@ export default defineConfig({
       remarkTufte,
       // @ts-ignore
       remarkSuperSub,
+      remarkTeaser,
     ],
     remarkRehype: {
       handlers: {
