@@ -1,0 +1,16 @@
+cabal-version: 3.0
+name:          lets-list-all-programs
+version:       0.1.0.0
+license:       AGPL-3.0-only
+author:        Wen Kokke
+copyright:     (c) 2016 Wen Kokke
+build-type:    Simple
+
+test-suite lets-list-all-programs
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     src
+  main-is:            lets-list-all-programs.lhs
+  default-language:   Haskell2010
+  ghc-options:        -pgmL markdown-unlit
+  build-tool-depends: markdown-unlit:markdown-unlit >=0.5.1 && <0.6
+  build-depends:      base

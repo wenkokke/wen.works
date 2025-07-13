@@ -1,4 +1,5 @@
 packages:
+    code/lets-list-all-programs
     code/side-effects-in-english
 
 tests: True
