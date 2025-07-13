@@ -7,6 +7,7 @@
  * @typedef {import("hast").Text} HastText
  */
 import { defineConfig } from "astro/config";
+import favicons from "astro-favicons";
 // @ts-ignore
 import remarkAgda from "remark-agda";
 import remarkBehead from "remark-behead";
@@ -68,6 +69,7 @@ const bibliography = await loadBibTeX("./src/assets/bibliography.bib");
 export default defineConfig({
   site: "https://wen.works",
   base: "",
+
   markdown: {
     syntaxHighlight: "prism",
     remarkPlugins: [
@@ -106,4 +108,10 @@ export default defineConfig({
     ],
     gfm: true,
   },
+  integrations: [
+    favicons({
+      name: "wen.works",
+      short_name: "wen.works",
+    })
+  ]
 });
