@@ -25,12 +25,17 @@ if (frontmatter.id === "a-tale-of-three-constructed-languages") {
     <span class="blog-post-author">
       {frontmatter.data.author}
     </span>
-    on
-    <Time
-      class="blog-post-pubDate"
-      format="datetime"
-      datetime={frontmatter.data.pubDate}
-    />
+    {
+      frontmatter.data.pubDate !== "draft" &&
+      <>
+      on
+      <Time
+        class="blog-post-pubDate"
+        format="datetime"
+        datetime={frontmatter.data.pubDate}
+      />
+      </>
+    }
   </p>
   <slot />
 </Layout>

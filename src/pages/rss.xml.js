@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import { pageAuthor, pageTitle, slug, teaser } from "../site";
+import { byPubDate, pageAuthor, pageTitle, pubDate, shouldPublish, slug, teaser } from "../site";
 import rfc822Date from "rfc822-date";
 import xmlFormat from "xml-formatter";
 
@@ -24,9 +24,11 @@ export async function GET(context) {
         <atom:link href="${site}" rel="self" type="application/rss+xml" />
         <lastBuildDate>${rfc822Date(lastBuildDate)}</lastBuildDate>
         ${
-          posts.map((post) => {
+          posts
+            .filter(shouldPublish)
+            .toSorted(byPubDate)
+            .map((post) => {
             const link = `${site}${slug(post)}`;
-            const pubDate = post.data.pubDate ? rfc822Date(post.data.pubDate) : "";
             return (`
               <item>
                 <title>${post.data.title}</title>
@@ -36,7 +38,7 @@ export async function GET(context) {
                   ${teasers[post.id] ?? ""}
                   ]]>
                 </description>
-                <pubDate>${pubDate}</pubDate>
+                <pubDate>${rfc822Date(pubDate(post))}</pubDate>
                 <guid>${link}</guid>
                 <dc:creator>${post.data.author}</dc:creator>
               </item>

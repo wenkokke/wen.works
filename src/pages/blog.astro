@@ -1,5 +1,5 @@
 ---
-import { byPubDate } from "../site";
+import { byPubDate, shouldPublish } from "../site";
 import "../assets/css/blog-post-list.css";
 import "../assets/css/font-papergirls.css";
 import "../assets/css/font-tengwar.css";
@@ -19,6 +19,7 @@ const posts = await getCollection("posts");
       <dl class="blog-post-list">
         {
           posts
+            .filter(shouldPublish)
             .toSorted(byPubDate)
             .map((post) => <BlogPostItem frontmatter={post} />)
         }

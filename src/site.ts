@@ -20,20 +20,28 @@ export interface Post {
   filePath?: string;
 }
 
+export function pubDate(post: Post): Date {
+  return post.data.pubDate === "draft" ? new Date() : post.data.pubDate;
+}
+
+export function shouldPublish(post: Post): boolean {
+  return import.meta.env.DEV || post.data.pubDate !== "draft";
+}
+
 export function byPubDate(post1: Post, post2: Post): number {
-  return post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf();
+  return pubDate(post2).valueOf() - pubDate(post1).valueOf();
 }
 
 export function yyyy(post: Post): string {
-  return String(post.data.pubDate.getFullYear()).padStart(4, "0");
+  return String(pubDate(post).getFullYear()).padStart(4, "0");
 }
 
 export function mm(post: Post): string {
-  return String(post.data.pubDate.getMonth() + 1).padStart(2, "0");
+  return String(pubDate(post).getMonth() + 1).padStart(2, "0");
 }
 
 export function dd(post: Post): string {
-  return String(post.data.pubDate.getDate()).padStart(2, "0");
+  return String(pubDate(post).getDate()).padStart(2, "0");
 }
 
 export function slug(post: Post): string {

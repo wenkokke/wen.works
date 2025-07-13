@@ -7,7 +7,10 @@ const { frontmatter } = Astro.props;
 <dt class="blog-post-item">
   <span class="blog-post-summary">
     <a href={slug(frontmatter)}>{frontmatter.data.title}</a>
-    <Time class="blog-post-pubDate" format="datetime" datetime={frontmatter.data.pubDate} />
+    { frontmatter.data.pubDate === "draft"
+      ? <span class="blog-post-pubDate">Draft</span>
+      : <Time class="blog-post-pubDate" format="datetime" datetime={frontmatter.data.pubDate} />
+    }
   </span>
 </dt>
 <dd>

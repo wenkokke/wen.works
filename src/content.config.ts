@@ -17,7 +17,7 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     author: z.string(),
-    pubDate: z.date().min(oldest).max(newest),
+    pubDate: z.union([z.date().min(oldest).max(newest), z.literal("draft")]),
     tags: z.optional(z.array(z.string())),
   }),
 });

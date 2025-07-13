@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import BlogPostItem from "../components/BlogPostItem.astro";
 import BibEntry from "../components/BibEntry.astro";
-import { byPubDate as postByPubDate } from "../site";
+import { byPubDate as postByPubDate, shouldPublish } from "../site";
 import bibEntries, {
   byPubDate as bibEntryByPubDate,
   byRelevance as bibEntryByRelevance,
@@ -66,6 +66,7 @@ const posts = await getCollection("posts");
       <dl class="blog-post-list">
         {
           posts
+            .filter(shouldPublish)
             .toSorted(postByPubDate)
             .slice(0, 5)
             .map((post) => <BlogPostItem frontmatter={post} />)
