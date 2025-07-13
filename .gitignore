@@ -28,6 +28,7 @@ _build/
 
 # Haskell build files
 dist-newstyle/
+dist-bench/
 
 # Haskell profiling files
 *.eventlog

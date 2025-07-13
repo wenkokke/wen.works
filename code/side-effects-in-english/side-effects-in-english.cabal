@@ -44,9 +44,9 @@ test-suite side-effects-in-english
 
   build-depends:
     , base
-    , parsec          ^>=3.1
-    , singletons      ^>=3.0
-    , singletons-th   ^>=3.5
-    , singletons-base ^>=3.5
+    , parsec           ^>=3.1
+    , singletons       ^>=3.0
+    , singletons-base  ^>=3.5
+    , singletons-th    ^>=3.5
     , tasty
     , tasty-hunit
