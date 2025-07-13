@@ -50,7 +50,15 @@ const Agda = {
 const MathJax = {
   // TeX Input Processor Options
   // https://docs.mathjax.org/en/latest/options/input/tex.html
-  tex: {},
+  tex: {
+    packages: {
+      '[+]': [
+        "ams",
+        "bussproofs",
+        "mathtools",
+      ]
+    }
+  },
 };
 
 // Citation options:
