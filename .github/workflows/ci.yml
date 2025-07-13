@@ -24,6 +24,11 @@ jobs:
         with:
           submodules: true
 
+      - name: 🛠️ Install Worktalk
+        run: |
+          cp public/fonts/Worktalk.ttf ~/.fonts
+          fc-cache -fv
+
       - name: 🛠️ Setup Agda
         uses: wenkokke/setup-agda@v2
         with:
