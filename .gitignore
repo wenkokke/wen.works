@@ -28,3 +28,6 @@ _build/
 
 # Haskell build files
 dist-newstyle/
+
+# Python venv
+.venv/
