@@ -29,5 +29,10 @@ _build/
 # Haskell build files
 dist-newstyle/
 
+# Haskell profiling files
+*.eventlog
+*.hp
+*.prof
+
 # Python venv
 .venv/
