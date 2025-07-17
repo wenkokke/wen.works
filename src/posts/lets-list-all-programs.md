@@ -28,6 +28,7 @@ import Data.Bits
 import Data.Foldable (traverse_)
 import Data.List (transpose)
 import Data.Proxy (Proxy (..))
+import GHC.Eventlog.Socket (startWait)
 import qualified Options.Applicative as O
 import Prelude hiding (lookup)
 import Text.Printf (printf)
@@ -1502,6 +1503,7 @@ main :: IO ()
 main = do
   let parse = O.customExecParser (O.prefs O.subparserInline)
   CommandOptions{..} <- parse commandOptions
+  traverse_ startWait eventlogSocket
   let ki = Star  :=> Star
   let ty = TyBot :-> TyBot
   let tests = do
@@ -1541,6 +1543,7 @@ data CommandOptions = CommandOptions
   { command :: Command
   , depth :: Int
   , system :: System
+  , eventlogSocket :: Maybe FilePath
   }
 ```
 
@@ -1596,13 +1599,19 @@ commandOptionsParser =
     <$> commandParser
     <*> O.option O.auto
         (  O.short 'd'
-        <> O.long "depth"
-        <> O.value 20
+            <> O.long "depth"
+            <> O.value 20
         )
     <*> O.option O.auto
         (  O.short 's'
-        <> O.long "system"
-        <> O.value STLC
+            <> O.long "system"
+            <> O.value STLC
+        )
+    <*> O.optional
+        ( O.strOption
+          ( O.long "eventlog-socket"
+              <> O.metavar "SOCKET"
+          )
         )
 ```
 
