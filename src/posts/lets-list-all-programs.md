@@ -28,6 +28,7 @@ import Data.Bits
 import Data.Foldable (traverse_)
 import Data.List (transpose)
 import Data.Proxy (Proxy (..))
+import Debug.Trace (traceShow)
 import GHC.Eventlog.Socket (startWait)
 import qualified Options.Applicative as O
 import Prelude hiding (lookup)
@@ -640,6 +641,11 @@ norm :: Ty ty -> Ty ty
 norm t = maybe t norm (step t)
 ```
 
+```haskell
+normTo :: (Eq ty) => KiCtx ty -> Ty ty -> Ty ty -> Ki -> Cool
+normTo del t r k = checkTy del t k !&& toCool (norm t == r)
+```
+
 :::mathpar
 $e,f,g
 \Coloneqq x
@@ -676,7 +682,7 @@ type TyCtx ty tm = tm -> Ty ty
 
 ```haskell
 checkTm ::
-  Eq ty =>
+  (Eq ty, Show ty) =>
   KiCtx ty -> TyCtx ty tm -> Tm ty tm -> Ty ty -> Cool
 ```
 
@@ -747,21 +753,13 @@ $\begin{prooftree}
 
 ```haskell
 checkTm del gam (TmAPP e (Norm s) (Norm t) k) r =
-  (
-    checkTy del all Star
-    !&&
-    checkTm del gam e all
-  )
+  checkTy del all Star
   &&&
-  (
-    (
-      checkTy del t k
-      &&&
-      checkTy del red Star
-    )
-    !&&
-    toCool (norm red == r)
-  )
+  checkTy del t k
+  &&&
+  checkTm del gam e all
+  &&&
+  normTo del red r Star
  where
   all = TyAll k s
   red = TyRed s t k
@@ -1177,7 +1175,7 @@ enumClosedLinTyLinTm depth t =
 checkClosedLinTyLinTmAlt :: Tm Z Z -> Ty Z -> Cool
 checkClosedLinTyLinTmAlt e t =
   checkClosedTm e t
-  &&&
+  !&&
   fst (inferUsageTyTmAlt @Lin @Lin e t)
 ```
 
