@@ -17,6 +17,11 @@ while [[ $# -gt 0 ]]; do
             shift # past argument
             shift # past value
             ;;
+        --min-depth)
+            MIN_DEPTH="$2"
+            shift # past argument
+            shift # past value
+            ;;
         -d|--max-depth)
             MAX_DEPTH="$2"
             shift # past argument
@@ -45,6 +50,7 @@ echo
 WARMUP="${WARMUP:-3}"
 MIN_RUNS="${MIN_RUNS:-10}"
 MAX_RUNS="${MAX_RUNS:-20}"
+MIN_DEPTH="${MIN_DEPTH:-1}"
 MAX_DEPTH="${MAX_DEPTH:-30}"
 SYSTEM="${SYSTEM:-STLC}"
 
@@ -54,6 +60,7 @@ echo
 echo "WARMUP    = ${WARMUP}"
 echo "MIN_RUNS  = ${MIN_RUNS}"
 echo "MAX_RUNS  = ${MAX_RUNS}"
+echo "MIN_DEPTH = ${MIN_DEPTH}"
 echo "MAX_DEPTH = ${MAX_DEPTH}"
 echo "SYSTEM    = ${SYSTEM}"
 echo
@@ -63,8 +70,8 @@ hyperfine \
     --warmup="${WARMUP}" \
     --min-runs="${MIN_RUNS}" \
     --max-runs="${MAX_RUNS}" \
-    --parameter-scan depth 1 "${MAX_DEPTH}" \
+    --parameter-scan depth "${MIN_DEPTH}" "${MAX_DEPTH}" \
     --parameter-step-size 1 \
     "${BIN} count --system="${SYSTEM}" --depth={depth}" \
     --export-csv="data/${SYSTEM}.csv" \
-    --show-output >"data/${SYSTEM}.out"
+    --show-output | tee -a "data/${SYSTEM}.out"

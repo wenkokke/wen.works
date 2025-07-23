@@ -637,13 +637,23 @@ step = \case
 ```
 
 ```haskell
-norm :: Ty ty -> Ty ty
-norm t = maybe t norm (step t)
+norm :: (Eq ty, Show ty) => Ty ty -> Ty ty
+norm = normCount 0
+ where
+  normCount i t =
+    maybe t (if i > 100 then normCheck else normCount (i + 1)) (step t)
+  normCheck t =
+    maybe t (\t' -> if t == t' then error (show t) else normCheck t') (step t)
 ```
 
 ```haskell
-normTo :: (Eq ty) => KiCtx ty -> Ty ty -> Ty ty -> Ki -> Cool
-normTo del t r k = checkTy del t k !&& toCool (norm t == r)
+ex1 :: Ty Z
+ex1 = TyApp (TyLam (TyApp (TyVar FZ) (TyVar FZ) Star)) (TyLam (TyApp (TyVar FZ) (TyVar FZ) Star)) Star
+```
+
+```haskell
+normTo :: (Eq ty, Show ty) => KiCtx ty -> Ty ty -> Ki -> Ty ty -> Bool
+normTo del t k r = toBool (checkTy del t k) && norm t == r
 ```
 
 :::mathpar
@@ -723,9 +733,13 @@ $\begin{prooftree}
 
 ```haskell
 checkTm del gam (TmApp f e (Norm s)) t =
-  checkTm del gam f (s :-> t)
-  &&&
-  checkTm del gam e s
+  checkTy del s Star
+  !&&
+  (
+    checkTm del gam f (s :-> t)
+    &&&
+    checkTm del gam e s
+  )
 ```
 
 :::mathpar
@@ -753,13 +767,19 @@ $\begin{prooftree}
 
 ```haskell
 checkTm del gam (TmAPP e (Norm s) (Norm t) k) r =
-  checkTy del all Star
-  &&&
-  checkTy del t k
-  &&&
-  checkTm del gam e all
-  &&&
-  normTo del red r Star
+  (
+    checkTy del all Star
+    &&&
+    checkTy del t k
+    &&&
+    checkTy del red Star
+  )
+  !&&
+  (
+    checkTm del gam e all
+    &&&
+    toCool (normTo del red Star r)
+  )
  where
   all = TyAll k s
   red = TyRed s t k
@@ -1517,22 +1537,24 @@ main = do
         Count -> print . length
         List  -> traverse_ putStrLn
         Test  -> const tests
+  let searcher :: (Enumerable a) => (a -> Cool) -> IO [a]
+      searcher = search' OSF depth
   let producer = case system of
-        STLC    -> fmap pretty <$> enumClosedSimpTm depth ki
-        FwTy    -> fmap pretty <$> enumClosedTy depth Star
-        Fw      -> fmap pretty <$> enumClosedTm depth ty
-        STLLC   -> fmap pretty <$> enumClosedSimpLinTm depth ki
-        STRLC   -> fmap pretty <$> enumClosedSimpRelTm depth ki
-        LFw     -> fmap pretty <$> enumClosedLinTm depth ty
-        RFw     -> fmap pretty <$> enumClosedRelTm depth ty
-        LLFwTy  -> fmap pretty <$> enumClosedLinTy depth Star
-        LLFw    -> fmap pretty <$> enumClosedLinTyLinTm depth ty
-        LLFwAlt -> fmap pretty <$> enumClosedLinTyLinTmAlt depth ty
-        RLFw    -> fmap pretty <$> enumClosedRelTyLinTm depth ty
-        RLFwAlt -> fmap pretty <$> enumClosedRelTyLinTmAlt depth ty
-        RRFw    -> fmap pretty <$> enumClosedRelTyRelTm depth ty
-        ULFw    -> fmap pretty <$> enumClosedUnTyLinTm depth ty
-        URFw    -> fmap pretty <$> enumClosedUnTyRelTm depth ty
+        STLC    -> fmap pretty <$> searcher (`checkClosedSimpTm` ki)
+        FwTy    -> fmap pretty <$> searcher (`checkClosedTy` Star)
+        Fw      -> fmap pretty <$> searcher (`checkClosedTm` ty)
+        STLLC   -> fmap pretty <$> searcher (`checkClosedSimpLinTm` ki)
+        STRLC   -> fmap pretty <$> searcher (`checkClosedSimpRelTm` ki)
+        LFw     -> fmap pretty <$> searcher (`checkClosedLinTm` ty)
+        RFw     -> fmap pretty <$> searcher (`checkClosedRelTm` ty)
+        LLFwTy  -> fmap pretty <$> searcher (`checkClosedLinTy` Star)
+        LLFw    -> fmap pretty <$> searcher (`checkClosedLinTyLinTm` ty)
+        LLFwAlt -> fmap pretty <$> searcher (`checkClosedLinTyLinTmAlt` ty)
+        RLFw    -> fmap pretty <$> searcher (`checkClosedRelTyLinTm` ty)
+        RLFwAlt -> fmap pretty <$> searcher (`checkClosedRelTyLinTmAlt` ty)
+        RRFw    -> fmap pretty <$> searcher (`checkClosedRelTyRelTm` ty)
+        ULFw    -> fmap pretty <$> searcher (`checkClosedUnTyLinTm` ty)
+        URFw    -> fmap pretty <$> searcher (`checkClosedUnTyRelTm` ty)
   consumer =<< producer
 ```
 

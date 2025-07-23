@@ -40,6 +40,7 @@ test-suite lets-list-all-programs
     TypeApplications
 
   ghc-options:
+    -- -threaded
     -rtsopts
     -flate-specialise
     -fspecialise-aggressively
