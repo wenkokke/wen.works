@@ -72,6 +72,6 @@ hyperfine \
     --max-runs="${MAX_RUNS}" \
     --parameter-scan depth "${MIN_DEPTH}" "${MAX_DEPTH}" \
     --parameter-step-size 1 \
-    "${BIN} count --system="${SYSTEM}" --depth={depth}" \
+    "${BIN} count --system="${SYSTEM}" --depth={depth} +RTS -N" \
     --export-csv="data/${SYSTEM}.csv" \
     --show-output | tee -a "data/${SYSTEM}.out"
