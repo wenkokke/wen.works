@@ -1538,7 +1538,7 @@ main = do
         List  -> traverse_ putStrLn
         Test  -> const tests
   let searcher :: (Enumerable a) => (a -> Cool) -> IO [a]
-      searcher = search' OSF depth
+      searcher = search' OF depth
   let producer = case system of
         STLC    -> fmap pretty <$> searcher (`checkClosedSimpTm` ki)
         FwTy    -> fmap pretty <$> searcher (`checkClosedTy` Star)
