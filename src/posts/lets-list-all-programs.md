@@ -905,6 +905,7 @@ instance Fin n => Fin (S n) where toInt = (((+1) . toInt) |> 0)
 class Usage use where
   zero  :: use n
   use   :: Fin n => n -> use n
+  ext  :: use n -> use (S n)
   pop   :: use (S n) -> (Cool, use n)
   (.+.) :: use n -> use n -> (Cool, use n)
 ```
@@ -917,6 +918,7 @@ newtype Lin tm = Lin Int
 instance Usage Lin where
   zero = Lin 0
   use n = Lin (bit . toInt $ n)
+  ext (Lin u) = Lin (shift u 1)
   pop (Lin u) = (toCool $ testBit u 0, Lin $ shift u (-1))
   Lin u .+. Lin v = (toCool $ u .&. v == 0, Lin $ u .|. v)
 ```
@@ -964,6 +966,45 @@ checkClosedSimpLinTm e t =
 enumClosedSimpLinTm :: Int -> SimpTy -> IO [SimpTm Z]
 enumClosedSimpLinTm depth t =
   search depth (`checkClosedSimpLinTm` t)
+```
+
+```haskell
+inferUsageSimpTmSeq ::
+  (Usage tmUse, Fin tm) =>
+  tmUse tm -> SimpTm tm -> (Cool, tmUse tm)
+inferUsageSimpTmSeq tmUse = \case
+  Var x -> do
+    use x .+. tmUse
+  Lam e -> do
+    tmUse' <- inferUsageSimpTmSeq (ext tmUse) e
+    pop tmUse'
+  App f e s -> do
+    tmUse' <- inferUsageSimpTmSeq tmUse f
+    inferUsageSimpTmSeq tmUse' e
+```
+
+<!--
+```haskell
+{-# SPECIALISE
+  inferUsageSimpTmSeq ::
+    (Fin tm) =>
+    Lin tm -> SimpTm tm -> (Cool, Lin tm)
+  #-}
+```
+-->
+
+```haskell
+checkClosedSimpLinTmSeq :: SimpTm Z -> SimpTy -> Cool
+checkClosedSimpLinTmSeq e t =
+  checkClosedSimpTm e t
+  &&&
+  fst (inferUsageSimpTmSeq @Lin zero e)
+```
+
+```haskell
+enumClosedSimpLinTmSeq :: Int -> SimpTy -> IO [SimpTm Z]
+enumClosedSimpLinTmSeq depth t =
+  search depth (`checkClosedSimpLinTmSeq` t)
 ```
 
 Here's all the linear terms of type $\star\Rightarrow\star$ of size $\leq 10$:
@@ -1249,6 +1290,7 @@ newtype Rel tm = Rel Int
 instance Usage Rel where
   zero = Rel 0
   use n = Rel (bit . toInt $ n)
+  ext (Rel u) = Rel (shift u 1)
   pop (Rel u) = (toCool $ testBit u 0, Rel $ shift u (-1))
   Rel u .+. Rel v = (true, Rel $ u .|. v)
 ```
@@ -1278,6 +1320,34 @@ checkClosedSimpRelTm e t =
 enumClosedSimpRelTm :: Int -> SimpTy -> IO [SimpTm Z]
 enumClosedSimpRelTm depth t =
   search depth (`checkClosedSimpRelTm` t)
+```
+-->
+
+<!--
+```haskell
+{-# SPECIALISE
+  inferUsageSimpTmSeq ::
+    (Fin tm) =>
+    Rel tm -> SimpTm tm -> (Cool, Rel tm)
+  #-}
+```
+-->
+
+<!--
+```haskell
+checkClosedSimpRelTmSeq :: SimpTm Z -> SimpTy -> Cool
+checkClosedSimpRelTmSeq e t =
+  checkClosedSimpTm e t
+  &&&
+  fst (inferUsageSimpTmSeq @Rel zero e)
+```
+-->
+
+<!--
+```haskell
+enumClosedSimpRelTmSeq :: Int -> SimpTy -> IO [SimpTm Z]
+enumClosedSimpRelTmSeq depth t =
+  search depth (`checkClosedSimpRelTmSeq` t)
 ```
 -->
 
@@ -1428,6 +1498,7 @@ newtype Un tm = Un ()
 instance Usage Un where
   zero = Un ()
   use n = Un ()
+  ext (Un ()) = Un ()
   pop (Un ()) = (true, Un ())
   Un () .+. Un () = (true, Un ())
 ```
@@ -1540,21 +1611,23 @@ main = do
   let searcher :: (Enumerable a) => (a -> Cool) -> IO [a]
       searcher = search' OF depth
   let producer = case system of
-        STLC    -> fmap pretty <$> searcher (`checkClosedSimpTm` ki)
-        FwTy    -> fmap pretty <$> searcher (`checkClosedTy` Star)
-        Fw      -> fmap pretty <$> searcher (`checkClosedTm` ty)
-        STLLC   -> fmap pretty <$> searcher (`checkClosedSimpLinTm` ki)
-        STRLC   -> fmap pretty <$> searcher (`checkClosedSimpRelTm` ki)
-        LFw     -> fmap pretty <$> searcher (`checkClosedLinTm` ty)
-        RFw     -> fmap pretty <$> searcher (`checkClosedRelTm` ty)
-        LLFwTy  -> fmap pretty <$> searcher (`checkClosedLinTy` Star)
-        LLFw    -> fmap pretty <$> searcher (`checkClosedLinTyLinTm` ty)
-        LLFwAlt -> fmap pretty <$> searcher (`checkClosedLinTyLinTmAlt` ty)
-        RLFw    -> fmap pretty <$> searcher (`checkClosedRelTyLinTm` ty)
-        RLFwAlt -> fmap pretty <$> searcher (`checkClosedRelTyLinTmAlt` ty)
-        RRFw    -> fmap pretty <$> searcher (`checkClosedRelTyRelTm` ty)
-        ULFw    -> fmap pretty <$> searcher (`checkClosedUnTyLinTm` ty)
-        URFw    -> fmap pretty <$> searcher (`checkClosedUnTyRelTm` ty)
+        STLC     -> fmap pretty <$> searcher (`checkClosedSimpTm` ki)
+        FwTy     -> fmap pretty <$> searcher (`checkClosedTy` Star)
+        Fw       -> fmap pretty <$> searcher (`checkClosedTm` ty)
+        STLLC    -> fmap pretty <$> searcher (`checkClosedSimpLinTm` ki)
+        STLLCSeq -> fmap pretty <$> searcher (`checkClosedSimpLinTmSeq` ki)
+        STRLC    -> fmap pretty <$> searcher (`checkClosedSimpRelTm` ki)
+        STRLCSeq -> fmap pretty <$> searcher (`checkClosedSimpRelTmSeq` ki)
+        LFw      -> fmap pretty <$> searcher (`checkClosedLinTm` ty)
+        RFw      -> fmap pretty <$> searcher (`checkClosedRelTm` ty)
+        LLFwTy   -> fmap pretty <$> searcher (`checkClosedLinTy` Star)
+        LLFw     -> fmap pretty <$> searcher (`checkClosedLinTyLinTm` ty)
+        LLFwAlt  -> fmap pretty <$> searcher (`checkClosedLinTyLinTmAlt` ty)
+        RLFw     -> fmap pretty <$> searcher (`checkClosedRelTyLinTm` ty)
+        RLFwAlt  -> fmap pretty <$> searcher (`checkClosedRelTyLinTmAlt` ty)
+        RRFw     -> fmap pretty <$> searcher (`checkClosedRelTyRelTm` ty)
+        ULFw     -> fmap pretty <$> searcher (`checkClosedUnTyLinTm` ty)
+        URFw     -> fmap pretty <$> searcher (`checkClosedUnTyRelTm` ty)
   consumer =<< producer
 ```
 
@@ -1573,7 +1646,9 @@ data System
   | FwTy
   | Fw
   | STRLC
+  | STRLCSeq
   | STLLC
+  | STLLCSeq
   | LFw
   | RFw
   | LLFwTy
