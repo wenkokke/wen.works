@@ -1580,9 +1580,9 @@ Main Function
 ================================================================================
 
 ```haskell
-propTest :: (Enumerable a, Show a) => Int -> (a -> Cool) -> IO ()
-propTest depth prop =
-  ctrex depth prop >>= \case
+propTest :: (Enumerable a, Show a) => Options -> Int -> (a -> Cool) -> IO ()
+propTest pcs depth prop =
+  ctrex' pcs depth prop >>= \case
     Left tc -> printf "No counterexample in %d tests\n\n" tc
     Right a -> printf "Found counterexample: %s\n\n" (show a)
 ```
@@ -1597,19 +1597,19 @@ main = do
   let ty = TyBot :-> TyBot
   let tests = do
         putStrLn "Test prop_ClosedLinTyLinTm_eq_ClosedLinTyLinTmAlt..."
-        propTest depth (`prop_ClosedLinTyLinTm_eq_ClosedLinTyLinTmAlt` ty)
+        propTest parallelConjunctionStrategy depth (`prop_ClosedLinTyLinTm_eq_ClosedLinTyLinTmAlt` ty)
         putStrLn "Test prop_ClosedRelTyLinTm_eq_ClosedRelTyLinTmAlt..."
-        propTest depth (`prop_ClosedRelTyLinTm_eq_ClosedRelTyLinTmAlt` ty)
+        propTest parallelConjunctionStrategy depth (`prop_ClosedRelTyLinTm_eq_ClosedRelTyLinTmAlt` ty)
         putStrLn "Test prop_ClosedLinTm_eq_ClosedUnTyLinTm..."
-        propTest depth (`prop_ClosedLinTm_eq_ClosedUnTyLinTm` ty)
+        propTest parallelConjunctionStrategy depth (`prop_ClosedLinTm_eq_ClosedUnTyLinTm` ty)
         putStrLn "Test prop_ClosedRelTm_eq_ClosedUnTyRelTm..."
-        propTest depth (`prop_ClosedRelTm_eq_ClosedUnTyRelTm` ty)
+        propTest parallelConjunctionStrategy depth (`prop_ClosedRelTm_eq_ClosedUnTyRelTm` ty)
   let consumer = case command of
         Count -> print . length
         List  -> traverse_ putStrLn
         Test  -> const tests
   let searcher :: (Enumerable a) => (a -> Cool) -> IO [a]
-      searcher = search' OF depth
+      searcher = search' parallelConjunctionStrategy depth
   let producer = case system of
         STLC     -> fmap pretty <$> searcher (`checkClosedSimpTm` ki)
         FwTy     -> fmap pretty <$> searcher (`checkClosedTy` Star)
@@ -1636,6 +1636,7 @@ data CommandOptions = CommandOptions
   { command :: Command
   , depth :: Int
   , system :: System
+  , parallelConjunctionStrategy :: Options
   , eventlogSocket :: Maybe FilePath
   }
 ```
@@ -1701,6 +1702,11 @@ commandOptionsParser =
         (  O.short 's'
             <> O.long "system"
             <> O.value STLC
+        )
+    <*> O.option O.auto
+        (  O.long "pcs"
+            <> O.long "parallel-conjunction-strategy"
+            <> O.value OF
         )
     <*> O.optional
         ( O.strOption

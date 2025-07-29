@@ -32,6 +32,11 @@ while [[ $# -gt 0 ]]; do
             shift # past argument
             shift # past value
             ;;
+        --pcs|--parallel-conjunction-strategy)
+            PARALLEL_CONJUNCTION_STRATEGY="$2"
+            shift # past argument
+            shift # past value
+            ;;
     esac
 done
 
@@ -53,16 +58,18 @@ MAX_RUNS="${MAX_RUNS:-20}"
 MIN_DEPTH="${MIN_DEPTH:-1}"
 MAX_DEPTH="${MAX_DEPTH:-30}"
 SYSTEM="${SYSTEM:-STLC}"
+PARALLEL_CONJUNCTION_STRATEGY="${PARALLEL_CONJUNCTION_STRATEGY:-OF}"
 
 # Print the configuration
 echo "Running benchmark with configuration:"
 echo
-echo "WARMUP    = ${WARMUP}"
-echo "MIN_RUNS  = ${MIN_RUNS}"
-echo "MAX_RUNS  = ${MAX_RUNS}"
-echo "MIN_DEPTH = ${MIN_DEPTH}"
-echo "MAX_DEPTH = ${MAX_DEPTH}"
-echo "SYSTEM    = ${SYSTEM}"
+echo "WARMUP                        = ${WARMUP}"
+echo "MIN_RUNS                      = ${MIN_RUNS}"
+echo "MAX_RUNS                      = ${MAX_RUNS}"
+echo "MIN_DEPTH                     = ${MIN_DEPTH}"
+echo "MAX_DEPTH                     = ${MAX_DEPTH}"
+echo "SYSTEM                        = ${SYSTEM}"
+echo "PARALLEL_CONJUNCTION_STRATEGY = ${PARALLEL_CONJUNCTION_STRATEGY}"
 echo
 
 # Run the benchmark
@@ -72,6 +79,6 @@ hyperfine \
     --max-runs="${MAX_RUNS}" \
     --parameter-scan depth "${MIN_DEPTH}" "${MAX_DEPTH}" \
     --parameter-step-size 1 \
-    "${BIN} count --system="${SYSTEM}" --depth={depth} +RTS -N" \
-    --export-csv="data/${SYSTEM}.csv" \
-    --show-output | tee -a "data/${SYSTEM}.out"
+    "${BIN} count --system="${SYSTEM}" --parallel-conjunction-strategy="${PARALLEL_CONJUNCTION_STRATEGY}" --depth={depth} +RTS -N" \
+    --export-csv="data/${SYSTEM}.${PARALLEL_CONJUNCTION_STRATEGY}.csv" \
+    --show-output | tee -a "data/${SYSTEM}.${PARALLEL_CONJUNCTION_STRATEGY}.out"
