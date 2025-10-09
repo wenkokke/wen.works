@@ -5,6 +5,28 @@ author: "Wen Kokke"
 tags: ["haskell", "property-based testing", "programming languages"]
 ---
 
+:::teaser
+Nearly a decade ago, I wrote some code that pretty efficiently enumerated all well-typed terms in a whole bunch of programming languages.
+The simply-typed λ-calculus, the linear and relevant λ-calculi, system Fω and, *uh*... [Plutus][Reasonable Agda Is Correct Haskell] and [Go][Featherweight Go], I guess?
+My code used Jonas Duregård's fantastic [lazy-search][lazy-search] package.
+:::
+
+<!--
+My code used Jonas Duregård's fantastic [lazy-search][lazy-search] package and, while I may have pushed it a *little* farther than those that'd come before me, I didn't feel that there was enough to publish, so I didn't.
+
+It's a well-known rule that all recipes on the internet must start by describing a long walk on the beach with one's husband.
+While blog post is a recipe of sorts, I don't have a husband, so let's see if a little walk through history qualifies?
+
+I didn't publish a paper to describe the technique I used.
+I figured all I'd really done was use Jonas Duregård's [lazy-search][lazy-search] package.
+Perhaps, I pushed it a *little* farther than those that'd come before me.
+However, Jonas' original paper describing the technique was never published outside of his PhD thesis, so it felt wrong
+Over the years, I've seen many folks cite
+
+Over the years, the [lazy-search][lazy-search] package languished in obscurity.
+In the early 2020s, when Brent Yorgey and I asked to take over maintenance of related packages such as [size-based] and [testing-feat],
+-->
+
 # Overview
 
 - Related Work? Redex. Whatever Justine cites.
@@ -14,7 +36,29 @@ tags: ["haskell", "property-based testing", "programming languages"]
 - System F Omega.
 - Benchmark.
 
+# Citations
+
+@FrankQL2024
+
+words
+
+@Duregard2016
+
+words
+
+@Palka2014
+
+words
+
+@ClaessenDP2015
+
 # Introduction
+
+```
+build-depends:
+  , lazy-search  ==0.1.3.0
+  , size-based   ==0.1.3.3
+````
 
 ```haskell
 import Control.Enumerable
@@ -1742,3 +1786,9 @@ commandOptionsParser =
 ```
 
 -->
+
+[Reasonable Agda Is Correct Haskell]: https://jesper.sikanda.be/files/reasonable-agda-is-correct-haskell.pdf
+[Featherweight Go]: https://doi.org/10.1145/3428217
+[lazy-search]: https://hackage.haskell.org/package/lazy-search
+[size-based]: https://hackage.haskell.org/package/size-based
+[testing-feat]: https://hackage.haskell.org/package/testing-feat

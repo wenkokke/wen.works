@@ -1,5 +1,29 @@
-A Tale Of Three Constructed Languages
-
+@inproceedings{CockxMECN2022,
+  author    = {Jesper Cockx and Orestis Melkonian and Lucas Escot and James Chapman and Ulf Norell},
+  title     = {Reasonable Agda is correct Haskell: writing verified Haskell using agda2hs},
+  year      = {2022},
+  isbn      = {9781450394383},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3546189.3549920},
+  doi       = {10.1145/3546189.3549920},
+  abstract  = {Modern dependently typed languages such as Agda can be used to   statically enforce the correctness of programs. However, they still   lack the large ecosystem of a more popular language like Haskell.   To combine the strength of both approaches, we present agda2hs, a   tool that translates an expressive subset of Agda to readable   Haskell, erasing dependent types and proofs in the process.   Thanks to Agda's support for erasure annotations, this   process is both safe and transparent to the user.   Compared to other tools for program extraction, agda2hs uses a syntax   that is already familiar to functional programmers, allows for both   intrinsic and extrinsic approaches to verification, and produces   Haskell code that is easy to read and audit by programmers with no   knowledge of Agda.    We present a practical use case of agda2hs at IOG   to verify properties of a program generator.   While both agda2hs and its ecosystem are still young, our   experiences so far show that this is a viable approach to make   verified functional programming available to a broader audience.    This paper is a literate Agda script, hence all rendered (Agda) code has been typechecked.},
+  booktitle = {Proceedings of the 15th ACM SIGPLAN International Haskell Symposium},
+  pages     = {108–122},
+  numpages  = {15},
+  keywords  = {Agda, Dependent types, Formal verification, Program extraction},
+  location  = {Ljubljana, Slovenia},
+  series    = {Haskell 2022}
+}
+@article{ClaessenDP2015,
+  title   = {Generating constrained random data with uniform distribution},
+  volume  = {25},
+  doi     = {10.1017/S0956796815000143},
+  journal = {Journal of Functional Programming},
+  author  = {Koen Claessen and Jonas Duregård and Michał H. Pałka},
+  year    = {2015},
+  pages   = {e8}
+}
 @incollection{Doucet2007,
   title     = {Interview with Sonja Lang},
   author    = {Michel Doucet},
@@ -10,6 +34,15 @@ A Tale Of Three Constructed Languages
   day       = 27,
   url       = {https://archive.is/AVtNj#selection-1054.0-1054.1}
 }
+@phdthesis{Duregard2016,
+  author = {Jonas Duregård},
+  title  = {{Automating Black-Box Property Based Testing}},
+  school = {Chalmers University of Technology},
+  year   = {2016},
+  type   = {PhD thesis},
+  isbn   = {978-91-7597-431-6},
+  url    = {https://publications.lib.chalmers.se/records/fulltext/240807/240807.pdf}
+}
 @book{Elgin1984,
   title     = {Native Tongue},
   author    = {Suzette Haden Elgin},
@@ -18,12 +51,45 @@ A Tale Of Three Constructed Languages
   address   = {New York},
   isbn      = {0879979453}
 }
+@article{FrankQL2024,
+  author     = {Justine Frank and Benjamin Quiring and Leonidas Lampropoulos},
+  title      = {Generating Well-Typed Terms That Are Not “Useless”},
+  year       = {2024},
+  issue_date = {January 2024},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {8},
+  number     = {POPL},
+  url        = {https://lemonidas.github.io/pdf/NotUseless.pdf},
+  journal    = {Proc. ACM Program. Lang.},
+  month      = jan,
+  articleno  = {77},
+  numpages   = {22},
+  keywords   = {test generation, property-based testing, well-typed lambda terms}
+}
+@article{GriesemerHKLTTWY2020,
+  author     = {Robert Griesemer and Raymond Hu and Wen Kokke and Julien Lange and Ian Taylor Lance and Bernardo Toninho and Philip Wadler and Nobuko Yoshida},
+  title      = {Featherweight go},
+  year       = {2020},
+  issue_date = {November 2020},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {4},
+  number     = {OOPSLA},
+  url        = {https://doi.org/10.1145/3428217},
+  doi        = {10.1145/3428217},
+  abstract   = {We describe a design for generics in Go inspired by previous work on Featherweight Java by Igarashi, Pierce, and Wadler. Whereas subtyping in Java is nominal, in Go it is structural, and whereas generics in Java are defined via erasure, in Go we use monomorphisation. Although monomorphisation is widely used, we are one of the first to formalise it. Our design also supports a solution to The Expression Problem.},
+  journal    = {Proc. ACM Program. Lang.},
+  month      = nov,
+  articleno  = {149},
+  numpages   = {29},
+  keywords   = {Generics, Go, Monomorphisation}
+}
 @article{Grygiel2012,
   title     = {How big is BCI fragment of BCK logic},
   volume    = {23},
   issn      = {1465-363X},
-  url       = {http://dx.doi.org/10.1093/logcom/exs017},
-  doi       = {10.1093/logcom/exs017},
+  url       = {https://arxiv.org/abs/1112.0643},
   number    = {3},
   journal   = {Journal of Logic and Computation},
   publisher = {Oxford University Press (OUP)},
@@ -47,6 +113,15 @@ A Tale Of Three Constructed Languages
   publisher = {CreateSpace},
   address   = {Online},
   isbn      = {0978292308}
+}
+@phdthesis{Palka2014,
+  author = {Michał Pałka},
+  title  = {{Random Structured Test Data Generation for Black-Box Testing}},
+  school = {Chalmers University of Technology},
+  year   = {2014},
+  type   = {PhD thesis},
+  isbn   = {978-91-7385-996-7},
+  url    = {https://publications.lib.chalmers.se/records/fulltext/195849/195849.pdf}
 }
 @article{Roberts2007,
   author  = {Siobhan Roberts},
