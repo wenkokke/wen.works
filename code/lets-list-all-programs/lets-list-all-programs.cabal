@@ -6,6 +6,10 @@ author:        Wen Kokke
 copyright:     (c) 2016 Wen Kokke
 build-type:    Simple
 
+flag threaded
+  default: True
+  manual:  True
+
 test-suite lets-list-all-programs
   type:               exitcode-stdio-1.0
   hs-source-dirs:     src
@@ -39,8 +43,11 @@ test-suite lets-list-all-programs
     TemplateHaskell
     TypeApplications
 
+  if flag(threaded)
+    ghc-options:
+      -threaded
+
   ghc-options:
-    -threaded
     -rtsopts
     -flate-specialise
     -fspecialise-aggressively
