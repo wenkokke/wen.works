@@ -1,0 +1,9 @@
+packages:
+  - "packages/@types/aeast"
+  - "packages/aeast-trickery"
+  - "packages/aeast-trickery-evaluate"
+  - "packages/aeast-util-evaluate"
+  - "packages/aeast-util-plus"
+  - "packages/aeast-util-plus-evaluate"
+  - "packages/aeast-util-to-text"
+  - "packages/aeast-util-plus-to-text"

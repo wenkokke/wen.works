@@ -1,0 +1,16 @@
+{
+  "name": "aeast-trickery-evaluate",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "author": "Wen Kokke",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+  },
+  "dependencies": {
+    "aeast-util-evaluate": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/aeast": "workspace:*"
+  }
+}

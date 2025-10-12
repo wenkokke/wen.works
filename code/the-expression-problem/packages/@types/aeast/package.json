@@ -1,0 +1,12 @@
+{
+  "name": "@types/aeast",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "",
+  "types": "index.d.ts",
+  "author": "Wen Kokke",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "@types/unist": "^3.0.3"
+  }
+}

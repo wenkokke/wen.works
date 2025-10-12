@@ -1,0 +1,21 @@
+{
+  "name": "aeast-util-plus-evaluate",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "author": "Wen Kokke",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "aeast-util-evaluate": "workspace:*",
+    "aeast-util-plus": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/aeast": "workspace:*",
+    "@jest/globals": "^30.0.0",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.0"
+  }
+}
