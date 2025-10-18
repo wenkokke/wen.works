@@ -1,0 +1,628 @@
+Benchmark 1: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=1 +RTS -N -RTS
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+  Time (mean ± σ):      16.4 ms ±   0.4 ms    [User: 2.5 ms, System: 6.7 ms]
+  Range (min … max):    15.1 ms …  16.9 ms    20 runs
+ 
+Benchmark 2: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=2 +RTS -N -RTS
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+  Time (mean ± σ):      16.3 ms ±   0.6 ms    [User: 2.5 ms, System: 6.7 ms]
+  Range (min … max):    14.2 ms …  16.7 ms    20 runs
+ 
+Benchmark 3: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=3 +RTS -N -RTS
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+  Time (mean ± σ):      16.5 ms ±   0.3 ms    [User: 2.6 ms, System: 6.7 ms]
+  Range (min … max):    16.2 ms …  17.0 ms    20 runs
+ 
+Benchmark 4: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=4 +RTS -N -RTS
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+  Time (mean ± σ):      16.4 ms ±   0.1 ms    [User: 2.5 ms, System: 6.6 ms]
+  Range (min … max):    16.2 ms …  16.7 ms    20 runs
+ 
+Benchmark 5: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=5 +RTS -N -RTS
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+  Time (mean ± σ):      16.4 ms ±   0.1 ms    [User: 2.5 ms, System: 6.5 ms]
+  Range (min … max):    16.2 ms …  16.6 ms    20 runs
+ 
+Benchmark 6: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=6 +RTS -N -RTS
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+  Time (mean ± σ):      16.4 ms ±   0.4 ms    [User: 2.5 ms, System: 6.8 ms]
+  Range (min … max):    15.2 ms …  16.9 ms    20 runs
+ 
+Benchmark 7: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=7 +RTS -N -RTS
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+2
+  Time (mean ± σ):      16.5 ms ±   0.2 ms    [User: 2.5 ms, System: 6.7 ms]
+  Range (min … max):    16.2 ms …  16.7 ms    20 runs
+ 
+Benchmark 8: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=8 +RTS -N -RTS
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+  Time (mean ± σ):      16.5 ms ±   0.2 ms    [User: 2.6 ms, System: 6.8 ms]
+  Range (min … max):    16.2 ms …  17.0 ms    20 runs
+ 
+Benchmark 9: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=9 +RTS -N -RTS
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+  Time (mean ± σ):      16.3 ms ±   0.5 ms    [User: 2.5 ms, System: 6.5 ms]
+  Range (min … max):    14.5 ms …  16.9 ms    20 runs
+ 
+Benchmark 10: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=10 +RTS -N -RTS
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+  Time (mean ± σ):      16.5 ms ±   0.2 ms    [User: 2.6 ms, System: 6.8 ms]
+  Range (min … max):    16.1 ms …  16.9 ms    20 runs
+ 
+Benchmark 11: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=11 +RTS -N -RTS
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+5
+  Time (mean ± σ):      16.4 ms ±   0.2 ms    [User: 2.6 ms, System: 6.4 ms]
+  Range (min … max):    16.1 ms …  16.6 ms    20 runs
+ 
+Benchmark 12: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=12 +RTS -N -RTS
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+  Time (mean ± σ):      16.4 ms ±   0.2 ms    [User: 2.7 ms, System: 6.3 ms]
+  Range (min … max):    16.1 ms …  16.9 ms    20 runs
+ 
+Benchmark 13: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=13 +RTS -N -RTS
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+  Time (mean ± σ):      16.6 ms ±   0.2 ms    [User: 3.1 ms, System: 6.4 ms]
+  Range (min … max):    16.2 ms …  16.9 ms    20 runs
+ 
+Benchmark 14: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=14 +RTS -N -RTS
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+  Time (mean ± σ):      16.2 ms ±   0.1 ms    [User: 4.2 ms, System: 8.6 ms]
+  Range (min … max):    16.1 ms …  16.4 ms    20 runs
+ 
+Benchmark 15: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=15 +RTS -N -RTS
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+16
+  Time (mean ± σ):      16.0 ms ±   0.1 ms    [User: 5.6 ms, System: 12.5 ms]
+  Range (min … max):    15.9 ms …  16.2 ms    20 runs
+ 
+Benchmark 16: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=16 +RTS -N -RTS
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+  Time (mean ± σ):      27.3 ms ±   0.9 ms    [User: 10.2 ms, System: 18.3 ms]
+  Range (min … max):    25.1 ms …  28.8 ms    20 runs
+ 
+Benchmark 17: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=17 +RTS -N -RTS
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+34
+  Time (mean ± σ):      39.2 ms ±   1.0 ms    [User: 21.4 ms, System: 38.8 ms]
+  Range (min … max):    37.0 ms …  41.3 ms    20 runs
+ 
+Benchmark 18: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=18 +RTS -N -RTS
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+  Time (mean ± σ):      69.2 ms ±   4.9 ms    [User: 49.3 ms, System: 86.2 ms]
+  Range (min … max):    61.1 ms …  74.0 ms    20 runs
+ 
+Benchmark 19: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=19 +RTS -N -RTS
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+65
+  Time (mean ± σ):     162.4 ms ±   2.7 ms    [User: 129.8 ms, System: 224.8 ms]
+  Range (min … max):   155.4 ms … 166.0 ms    18 runs
+ 
+Benchmark 20: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=20 +RTS -N -RTS
+151
+151
+151
+151
+151
+151
+151
+151
+151
+151
+  Time (mean ± σ):     422.7 ms ±   2.9 ms    [User: 355.0 ms, System: 624.3 ms]
+  Range (min … max):   417.7 ms … 426.6 ms    7 runs
+ 
+Benchmark 21: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=21 +RTS -N -RTS
+151
+151
+151
+151
+151
+  Time (mean ± σ):      1.249 s ±  0.002 s    [User: 1.070 s, System: 1.880 s]
+  Range (min … max):    1.248 s …  1.250 s    2 runs
+ 
+Benchmark 22: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=22 +RTS -N -RTS
+315
+315
+315
+315
+  Time (abs ≡):         3.453 s               [User: 2.963 s, System: 5.211 s]
+ 
+Benchmark 23: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=23 +RTS -N -RTS
+315
+315
+315
+315
+  Time (abs ≡):        10.123 s               [User: 8.695 s, System: 15.505 s]
+ 
+Benchmark 24: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=24 +RTS -N -RTS
+738
+738
+738
+738
+  Time (abs ≡):        30.844 s               [User: 26.501 s, System: 47.192 s]
+ 
+Benchmark 25: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=25 +RTS -N -RTS
+738
+738
+738
+738
+  Time (abs ≡):        101.432 s               [User: 87.253 s, System: 154.979 s]
+ 
+Benchmark 26: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=26 +RTS -N -RTS
+1708
+1708
+1708
+1708
+  Time (abs ≡):        299.775 s               [User: 257.725 s, System: 458.838 s]
+ 
+Benchmark 27: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=27 +RTS -N -RTS
+1708
+1708
+1708
+1708
+  Time (abs ≡):        950.221 s               [User: 817.453 s, System: 1449.119 s]
+ 
+Benchmark 28: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=28 +RTS -N -RTS
+3969
+3969
+3969
+3969
+  Time (abs ≡):        3065.304 s               [User: 2636.955 s, System: 4707.148 s]
+ 
+Benchmark 29: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=29 +RTS -N -RTS
+3969
+3969
+3969
+3969
+  Time (abs ≡):        10452.356 s               [User: 8997.734 s, System: 16143.754 s]
+ 
+Benchmark 30: /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=30 +RTS -N -RTS
+9790
+9790
+9790
+9790
+  Time (abs ≡):        33138.502 s               [User: 28550.652 s, System: 51327.311 s]
+ 
+Summary
+  /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=15 +RTS -N -RTS ran
+    1.01 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=14 +RTS -N -RTS
+    1.02 ± 0.03 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=9 +RTS -N -RTS
+    1.02 ± 0.04 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=2 +RTS -N -RTS
+    1.02 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=11 +RTS -N -RTS
+    1.02 ± 0.02 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=12 +RTS -N -RTS
+    1.02 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=4 +RTS -N -RTS
+    1.02 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=5 +RTS -N -RTS
+    1.03 ± 0.02 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=6 +RTS -N -RTS
+    1.03 ± 0.03 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=1 +RTS -N -RTS
+    1.03 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=7 +RTS -N -RTS
+    1.03 ± 0.02 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=3 +RTS -N -RTS
+    1.03 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=8 +RTS -N -RTS
+    1.03 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=10 +RTS -N -RTS
+    1.04 ± 0.01 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=13 +RTS -N -RTS
+    1.70 ± 0.06 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=16 +RTS -N -RTS
+    2.44 ± 0.06 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=17 +RTS -N -RTS
+    4.32 ± 0.31 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=18 +RTS -N -RTS
+   10.13 ± 0.17 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=19 +RTS -N -RTS
+   26.37 ± 0.21 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=20 +RTS -N -RTS
+   77.93 ± 0.35 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=21 +RTS -N -RTS
+  215.38 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=22 +RTS -N -RTS
+  631.51 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=23 +RTS -N -RTS
+ 1924.21 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=24 +RTS -N -RTS
+ 6327.78 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=25 +RTS -N -RTS
+18701.31 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=26 +RTS -N -RTS
+59278.97 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=27 +RTS -N -RTS
+191227.23 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=28 +RTS -N -RTS
+652064.17 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=29 +RTS -N -RTS
+2067326.15 times faster than /Users/wen/Projects/wen.works/dist-newstyle/build/aarch64-osx/ghc-9.12.2/lets-list-all-programs-0.1.0.0/t/lets-list-all-programs/build/lets-list-all-programs/lets-list-all-programs count --system=STLLC --parallel-conjunction-strategy=O --depth=30 +RTS -N -RTS
