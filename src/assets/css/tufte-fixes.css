@@ -35,3 +35,13 @@ pre.fullwidth > code {
     max-width: 97%;
   }
 }
+
+/* Fix title padding in tufte-css */
+h1 {
+  width: 80%;
+}
+@media (max-width: 760px) {
+  h1 {
+    width: 97%;
+  }
+}
