@@ -104,27 +104,27 @@ echo "OUT_FILE                      = ${OUT_FILE}"
 echo "CSV_FILE                      = ${CSV_FILE}"
 echo
 
-# Clean any previous build
-echo "Cleaning any previous build artifacts..."
-cabal clean
-echo
-
-# Build the binary
-echo "Building binary for lets-list-all-programs..."
-cabal build -v0 ${WITH_COMPILER} lets-list-all-programs
-echo
-
-# Get to binary
-echo "Locating binary for lets-list-all-programs..."
-BIN=$(cabal list-bin -v0 ${WITH_COMPILER} lets-list-all-programs | head -n1)
-echo "Found: ${BIN}"
-echo
-
 # Check if the output files exist
 if [ -f "${OUT_FILE}" -a -f "${CSV_FILE}" ]; then
 	echo "Warning: Benchmark skipped, output already files exist"
 	exit 0
 else
+	# Clean any previous build
+	echo "Cleaning any previous build artifacts..."
+	cabal clean
+	echo
+
+	# Build the binary
+	echo "Building binary for lets-list-all-programs..."
+	cabal build -v0 ${WITH_COMPILER} lets-list-all-programs
+	echo
+
+	# Get to binary
+	echo "Locating binary for lets-list-all-programs..."
+	BIN=$(cabal list-bin -v0 ${WITH_COMPILER} lets-list-all-programs | head -n1)
+	echo "Found: ${BIN}"
+	echo
+
 	# Run the benchmark
 	hyperfine \
 		--warmup="${WARMUP}" \
